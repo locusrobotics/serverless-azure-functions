@@ -68,7 +68,7 @@ export class ApimResource implements ArmResourceTemplateGenerator {
             "publisherName": "[parameters('apimPublisherName')]",
             "notificationSenderEmail": "apimgmt-noreply@mail.windowsazure.com",
             "hostnameConfigurations": [],
-            "virtualNetworkType": "None"
+            "virtualNetworkType": "External"
           }
         }
       ]

@@ -6,6 +6,10 @@ import { ApiContract, BackendContract } from "@azure/arm-apimanagement/esm/model
 export interface ApiManagementConfig {
   /** The name of the APIM azure resource */
   name: string;
+  /** The subscription of the APIM azure resource */
+  apimSubscriptionId?: string;
+  /** The name of the APIM azure resource group */
+  resourceGroup: string;
   /** The API contract configuration */
   apis: ApiContract[];
   /** The API's backend contract configuration */
