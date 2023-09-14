@@ -34,8 +34,9 @@ jobs:
       - name: Install Node.js and npm
         uses: actions/setup-node@v3
         with:
+          always-auth: true
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://npm.pkg.github.com
+          registry-url: https://npm.pkg.github.com/locusrobotics
 
       - name: Install dependencies
         if: steps.cacheNpm.outputs.cache-hit != 'true'
@@ -51,8 +52,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          npm whoami --registry https://npm.pkg.github.com
           ls -al
-          npm publish --registry https://npm.pkg.github.com
+          npm publish --registry https://npm.pkg.github.com/locusrobotics
 
       - name: Create and publish a release
         uses: softprops/action-gh-release@v1

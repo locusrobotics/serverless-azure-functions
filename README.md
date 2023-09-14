@@ -8,6 +8,19 @@ This plugin enables Azure Functions support within the Serverless Framework.
 
 <!-- [![Node Integration Tests](https://github.com/serverless/serverless-azure-functions/workflows/Node%20Integration%20Tests/badge.svg)](https://github.com/serverless/serverless-azure-functions/actions?query=workflow%3A%22Node+Integration+Tests%22) [![Python Integration Tests](https://github.com/serverless/serverless-azure-functions/workflows/Python%20Integration%20Tests/badge.svg)](https://github.com/serverless/serverless-azure-functions/actions?query=workflow%3A%22Python+Integration+Tests%22) [![.NET Integration Tests](https://github.com/serverless/serverless-azure-functions/workflows/.NET%20Integration%20Tests/badge.svg)](https://github.com/serverless/serverless-azure-functions/actions?query=workflow%3A%22.NET+Integration+Tests%22) -->
 
+## Tagging (Locus)
+
+When developing a feature/bug, create a feature branch from the correct branch (publish-2.2.1). Be sure to update the package.json version to the next sequential letter.
+When the feature branch is merged into branch `publish-2.2.1`, create a tag via the `scripts/tagBranchForRelease.sh`.
+
+```bash
+$ git checkout publish-2.2.1
+$ git pull
+$ ./scripts/tagBranchForRelease.sh publish-2.2.1
+```
+
+Once the tag is pushed, the GitHub action workflow, `github-publish.yml` should run, which will do the publish to the private GitHub package registry.
+
 ## Quickstart
 
 ### Pre-requisites
