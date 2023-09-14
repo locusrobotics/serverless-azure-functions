@@ -42,7 +42,9 @@ export class ArmService extends BaseService {
     const mergedTemplate = template.getTemplate(this.config);
     let parameters = template.getParameters(this.config);
 
-    if (this.config.provider.apim) {
+    const apimProvider = this.config.provider.apim;
+
+    if (apimProvider && !(apimProvider.skipArmTemplate && apimProvider.skipArmTemplate.toString() === "true")) {
       const apimTemplate = apimResource.getTemplate();
       const apimParameters = apimResource.getParameters(this.config);
 
@@ -60,6 +62,12 @@ export class ArmService extends BaseService {
         ...apimParameters,
       };
     }
+
+    // add tags to all resources
+    mergedTemplate.resources = mergedTemplate.resources.map(r => ({
+      ...r,
+      tags: this.config.provider.tags,
+    }));
 
     return {
       template: mergedTemplate,
@@ -102,7 +110,7 @@ export class ArmService extends BaseService {
     }
 
     deployment.parameters = deployment.parameters || {};
-    
+
     for (const key of Object.keys(deployment.parameters)) {
       if (!deployment.parameters[key].value) {
         delete deployment.parameters[key];
@@ -143,7 +151,7 @@ export class ArmService extends BaseService {
   }
 
   private areDeploymentsEqual(current: ArmDeployment, previous: ArmDeployment): boolean {
-    if (!current || !previous) {
+    if (!current || !previous || !previous.template || !previous.parameters) {
       return false;
     }
     const mergedDefaultParameters = this.mergeDefaultParams(current.parameters, current.template.parameters);
