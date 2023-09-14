@@ -52,7 +52,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm whoami --registry https://npm.pkg.github.com
+          npm whoami --registry https://npm.pkg.github.com/locusrobotics
           ls -al
           npm publish --registry https://npm.pkg.github.com/locusrobotics
 
