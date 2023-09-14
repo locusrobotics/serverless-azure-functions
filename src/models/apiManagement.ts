@@ -24,6 +24,8 @@ export interface ApiManagementConfig {
   ipFilters?: ApiIpFilterPolicy[];
   /** The API's header policies */
   checkHeaders?: ApiCheckHeaderPolicy[];
+  /** Whether or not the APIM is included in the ARM template  */
+  skipArmTemplate?: boolean;
   /** The pricing SKU for the APIM instance */
   sku?: {
     /** The SKU name, (consumption | developer | basic | standard | premium) */
