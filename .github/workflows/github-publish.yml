@@ -52,8 +52,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          cat /home/runner/work/_temp/.npmrc
           npm whoami --registry https://npm.pkg.github.com/locusrobotics
-          ls -al
           npm publish --registry https://npm.pkg.github.com/locusrobotics
 
       - name: Create and publish a release
