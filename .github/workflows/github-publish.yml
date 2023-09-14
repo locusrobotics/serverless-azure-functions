@@ -50,7 +50,9 @@ jobs:
         #       as it appears actions/setup-node sets own value
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --registry https://npm.pkg.github.com
+        run: |
+          ls -al
+          npm publish --registry https://npm.pkg.github.com
 
       - name: Create and publish a release
         uses: softprops/action-gh-release@v1
