@@ -54,7 +54,7 @@ jobs:
         # npm whoami --registry https://npm.pkg.github.com/
         run: |
           cat /home/runner/work/_temp/.npmrc
-          npm publish --registry https://npm.pkg.github.com/
+          npm publish --access restricted --registry https://npm.pkg.github.com/
 
       - name: Create and publish a release
         uses: softprops/action-gh-release@v1
