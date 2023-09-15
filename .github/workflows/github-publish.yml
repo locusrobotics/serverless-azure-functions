@@ -53,8 +53,8 @@ jobs:
         # Note: Setting NODE_AUTH_TOKEN as job|workspace wide env var won't work
         #       as it appears actions/setup-node sets own value
         env:
-          #NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          #NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # npm whoami --registry https://npm.pkg.github.com/
         run: |
           cat /home/runner/work/_temp/.npmrc
