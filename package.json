@@ -25,7 +25,7 @@
     "changelog:condensed": "npm run changelog && node ./scripts/condenseChangelog.js"
   },
   "repository": {
-    "git": "https://github.com/serverless/serverless-azure-functions"
+    "git": "https://github.com/locusrobotics/serverless-azure-functions.git"
   },
   "lcov.path": [
     "./coverage/lcov.info"
@@ -98,7 +98,7 @@
     "typescript": "^3.4.5"
   },
   "publishConfig": {
-    "@locusrobotics:registry": "https://npm.pkg.github.com"
+    "@locusrobotics:registry": "https://npm.pkg.github.com/locusrobotics"
   },
   "peerDependencies": {
     "serverless-webpack": "^4.2.0",
