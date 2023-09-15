@@ -38,6 +38,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           always-auth: true
+          scope: '@locusrobotics'
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://npm.pkg.github.com/locusrobotics/
 
