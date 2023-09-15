@@ -10,7 +10,7 @@ This plugin enables Azure Functions support within the Serverless Framework.
 
 ## Tagging (Locus)
 
-When developing a feature/bug, create a feature branch from the correct branch (publish-2.2.1). Be sure to update the package.json version to the next sequential letter.
+When developing a feature/bug, create a feature branch from the default branch (publish-2.2.1). Be sure to update the package.json version to the next sequential letter.
 When the feature branch is merged into branch `publish-2.2.1`, create a tag via the `scripts/tagBranchForRelease.sh`.
 
 ```bash
