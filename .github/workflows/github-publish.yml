@@ -36,7 +36,7 @@ jobs:
         with:
           always-auth: true
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://npm.pkg.github.com/locusrobotics
+          registry-url: https://npm.pkg.github.com/
 
       - name: Install dependencies
         if: steps.cacheNpm.outputs.cache-hit != 'true'
@@ -53,8 +53,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cat /home/runner/work/_temp/.npmrc
-          npm whoami --registry https://npm.pkg.github.com/locusrobotics
-          npm publish --registry https://npm.pkg.github.com/locusrobotics
+          npm whoami --registry https://npm.pkg.github.com/
+          npm publish --registry https://npm.pkg.github.com/
 
       - name: Create and publish a release
         uses: softprops/action-gh-release@v1
