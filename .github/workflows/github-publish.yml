@@ -51,9 +51,9 @@ jobs:
         #       as it appears actions/setup-node sets own value
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # npm whoami --registry https://npm.pkg.github.com/
         run: |
           cat /home/runner/work/_temp/.npmrc
-          npm whoami --registry https://npm.pkg.github.com/
           npm publish --registry https://npm.pkg.github.com/
 
       - name: Create and publish a release
