@@ -1,6 +1,6 @@
 {
   "name": "@locusrobotics/serverless-azure-functions",
-  "version": "2.2.1-b",
+  "version": "2.2.1-c",
   "description": "Provider plugin for the Serverless Framework v1.x which adds support for Azure Functions.",
   "license": "MIT",
   "main": "./lib/index.js",
