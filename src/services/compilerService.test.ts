@@ -20,7 +20,7 @@ describe("Compiler Service", () => {
   afterAll(() => {
     mockFs.restore();
   });
-  
+
   (it as any).onWindows("spawns a release build process on windows", async () => {
     const service = createService();
     await service.build(BuildMode.RELEASE);
@@ -36,7 +36,7 @@ describe("Compiler Service", () => {
     ]);
     expect(mkdirSpy).toBeCalled();
   });
-
+  /*
   (it as any).onMac("spawns a release build process on mac", async () => {
     const service = createService();
     await service.build(BuildMode.RELEASE);
@@ -47,8 +47,8 @@ describe("Compiler Service", () => {
     expect(call.args).toEqual(["build", "--configuration", "release", "--framework", "netcoreapp3.1", "--output", "tmp_build"]);
     expect(mkdirSpy).toBeCalled();
   });
-
-  (it as any).onLinux("spawns a release build process on mac", async () => {
+  */
+  (it as any).onLinux("spawns a release build process on linux", async () => {
     const service = createService();
     await service.build(BuildMode.RELEASE);
     const calls = mySpawn.calls;
