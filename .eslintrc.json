@@ -8,6 +8,7 @@
   "rules": {
     "prefer-const": ["error", { "destructuring": "all" }],
     "quotes": ["error", "double"],
+    "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/indent": [
       "error",
       2
