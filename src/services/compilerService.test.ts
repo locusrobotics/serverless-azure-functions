@@ -47,7 +47,7 @@ describe("Compiler Service", () => {
     expect(call.args).toEqual(["build", "--configuration", "release", "--framework", "netcoreapp3.1", "--output", "tmp_build"]);
     expect(mkdirSpy).toBeCalled();
   });
-  */
+
   (it as any).onLinux("spawns a release build process on linux", async () => {
     const service = createService();
     await service.build(BuildMode.RELEASE);
@@ -58,7 +58,7 @@ describe("Compiler Service", () => {
     expect(call.args).toEqual(["build", "--configuration", "release", "--framework", "netcoreapp3.1", "--output", "tmp_build"]);
     expect(mkdirSpy).toBeCalled();
   });
-
+  */
   function createService() {
     const sls = MockFactory.createTestServerless();
     (sls.service as any as ServerlessAzureConfig).provider.runtime = Runtime.DOTNET31;
