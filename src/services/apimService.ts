@@ -280,7 +280,7 @@ export class ApimService extends BaseService {
    */
   private async deployOperation(resource: ApiManagementServiceResource, api: ApiContract, backend: BackendContract, operation: OperationContract, functionName: string): Promise<OperationContract> {
     try {
-      const client = new ApiManagementClient(this.credentials, this.subscriptionId);
+      const client = new ApiManagementClient(this.credentials, this.apimConfig.apimSubscriptionId);
 
       const operationConfig: OperationContract = {
         name: operation.name || functionName,
