@@ -48,13 +48,15 @@ export class StorageAccountResource implements ArmResourceTemplateGenerator {
       variables: {},
       resources: [
         {
-          apiVersion: "2018-07-01",
+          apiVersion: "2019-04-01",
           name: "[parameters('storageAccountName')]",
           type: "Microsoft.Storage/storageAccounts",
           location: "[parameters('location')]",
           kind: "StorageV2",
           properties: {
-            accountType: "[parameters('storageAccountSkuName')]"
+            allowBlobPublicAccess: false,
+            supportsHttpsTrafficOnly: true,
+            minimumTlsVersion: "TLS1_2"
           },
           sku: {
             name: "[parameters('storageAccountSkuName')]",
