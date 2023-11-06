@@ -114,7 +114,7 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
             "reserved": "[parameters('functionAppReserved')]",
             name: "[parameters('functionAppName')]",
             "clientAffinityEnabled": false,
-            "publicNetworkAccess": "Enabled",
+            "publicNetworkAccess": "[parameters('functionAppPublicNetworkAccess')]",
             "hostingEnvironment": ""
           }
         }
