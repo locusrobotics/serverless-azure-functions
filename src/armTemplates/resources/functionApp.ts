@@ -73,6 +73,10 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
     return AzureNamingService.getResourceName(options);
   }
 
+  /**
+   * "publicNetworkAccess": "Enabled"  -- We need to enable FA access restriction
+   * so that github can deploy FA using scm site when we are enabled private endpoint for FA
+   */
   public getTemplate(config: ServerlessAzureConfig): ArmResourceTemplate {
     return {
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -95,13 +99,14 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
           "kind": "[parameters('functionAppKind')]",
           "properties": {
             "siteConfig": {
-              appSettings: this.getFunctionAppSettings(config), 
+              appSettings: this.getFunctionAppSettings(config),
               "linuxFxVersion": "[parameters('linuxFxVersion')]",
             },
             "reserved": "[parameters('functionAppReserved')]",
             name: "[parameters('functionAppName')]",
             "clientAffinityEnabled": false,
-            "hostingEnvironment": ""
+            "hostingEnvironment": "",
+            "publicNetworkAccess": "Enabled"
           }
         }
       ]
