@@ -37,6 +37,8 @@ export interface ApiManagementConfig {
   publisherEmail?: string;
   /** The publisher name associated with the APIM instance */
   publisherName?: string;
+  /** Disable a policy to specify the APIM backend to use for an operation */
+  disableBackendPolicyForOperation?: boolean;
 }
 
 /**
