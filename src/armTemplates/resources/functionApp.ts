@@ -31,7 +31,7 @@ interface FunctionAppParams extends DefaultArmParams {
    */
   functionAppWorkerRuntime: ArmParameter;
   /**
-   * Function app version. Default: `~2`
+   * Function app version. Default: `~3`
    */
   functionAppExtensionVersion: ArmParameter;
   /**
@@ -49,6 +49,13 @@ interface FunctionAppParams extends DefaultArmParams {
    * Automatically installs NPM or PyPi packages during deployment
    */
   functionAppEnableRemoteBuild: ArmParameter;
+  /**
+   * Whether or not to enable or disable public network access to the
+   * function app. Without this setting, null is the default, which
+   * will determine Enabled/Disabled based on whether a private
+   * endpoint is present to the function app
+   */
+  functionAppPublicNetworkAccess: ArmParameter;
   /**
    * Name of storage account used by function app
    */
@@ -73,9 +80,11 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
     return AzureNamingService.getResourceName(options);
   }
 
-  /**
-   * "publicNetworkAccess": "Enabled"  -- We need to enable FA access restriction
-   * so that github can deploy FA using scm site when we are enabled private endpoint for FA
+  /*
+   * Using "publicNetworkAccess": "Enabled", provides function app access restriction so that GitHub may deploy the
+   * functions using SCM site when we have enabled a private endpoint for the function app. The default value is null,
+   * which means it is conditional based on whether a private endpoint is present. It is better to provide "Enabled"
+   * or "Disabled" for a more deliberate configuration.
    */
   public getTemplate(config: ServerlessAzureConfig): ArmResourceTemplate {
     return {
@@ -105,8 +114,8 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
             "reserved": "[parameters('functionAppReserved')]",
             name: "[parameters('functionAppName')]",
             "clientAffinityEnabled": false,
-            "hostingEnvironment": "",
-            "publicNetworkAccess": "Enabled"
+            "publicNetworkAccess": "[parameters('functionAppPublicNetworkAccess')]",
+            "hostingEnvironment": ""
           }
         }
       ]
@@ -148,6 +157,9 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
       },
       functionAppExtensionVersion: {
         value: resourceConfig.extensionVersion,
+      },
+      functionAppPublicNetworkAccess: {
+        value: (resourceConfig.publicNetworkAccess) ? resourceConfig.publicNetworkAccess : "Enabled",
       },
       functionAppEnableRemoteBuild: {
         value: isLinuxRuntime
@@ -194,6 +206,10 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
       functionAppEnableRemoteBuild: {
         defaultValue: false,
         type: ArmParamType.Bool
+      },
+      functionAppPublicNetworkAccess: {
+        defaultValue: "Enabled",
+        type: ArmParamType.String
       },
       storageAccountName: {
         defaultValue: "",

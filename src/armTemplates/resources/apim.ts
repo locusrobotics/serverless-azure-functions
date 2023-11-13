@@ -56,7 +56,7 @@ export class ApimResource implements ArmResourceTemplateGenerator {
       "resources": [
         {
           "type": "Microsoft.ApiManagement/service",
-          "apiVersion": "2018-06-01-preview",
+          "apiVersion": "2021-08-01",
           "name": "[parameters('apiManagementName')]",
           "location": "[parameters('location')]",
           "sku": {
