@@ -305,22 +305,20 @@ export class ApimService extends BaseService {
         operationConfig,
       );
 
-      if ( !(this.apimConfig.disableBackendPolicyForOperation && this.apimConfig.disableBackendPolicyForOperation.toString() === "true")) {
-        // Get any existing operation policy merge in backend service
-        const operationPolicy = await this.getApiOperationPolicy(api, operationConfig);
-        const policyBuilder = operationPolicy
-          ? await ApimPolicyBuilder.parse(operationPolicy.value)
-          : new ApimPolicyBuilder();
+      // Get any existing operation policy merge in backend service
+      const operationPolicy = await this.getApiOperationPolicy(api, operationConfig);
+      const policyBuilder = operationPolicy
+        ? await ApimPolicyBuilder.parse(operationPolicy.value)
+        : new ApimPolicyBuilder();
 
-        const policyXml = policyBuilder
-          .setBackendService(backend.name)
-          .build();
+      const policyXml = policyBuilder
+        .setBackendService(backend.name)
+        .build();
 
-        await client.apiOperationPolicy.createOrUpdate(this.resourceGroup, this.apimConfig.name, api.name, operationConfig.name, {
-          format: "rawxml",
-          value: policyXml,
-        });
-      }
+      await client.apiOperationPolicy.createOrUpdate(this.resourceGroup, this.apimConfig.name, api.name, operationConfig.name, {
+        format: "rawxml",
+        value: policyXml,
+      });
 
       return result;
     } catch (e) {
