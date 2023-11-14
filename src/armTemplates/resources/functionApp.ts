@@ -95,7 +95,7 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
       "resources": [
         {
           "type": "Microsoft.Web/sites",
-          "apiVersion": "2016-03-01",
+          "apiVersion": "2022-09-01",
           name: "[parameters('functionAppName')]",
           "location": "[parameters('location')]",
           "identity": {
@@ -114,7 +114,7 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
               "scmIpSecurityRestrictionsDefaultAction": "Allow",
             },
             "reserved": "[parameters('functionAppReserved')]",
-            name: "[parameters('functionAppName')]",
+            // name: "[parameters('functionAppName')]",
             "clientAffinityEnabled": false,
             "publicNetworkAccess": "[parameters('functionAppPublicNetworkAccess')]",
             "hostingEnvironment": ""
