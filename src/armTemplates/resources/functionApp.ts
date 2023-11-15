@@ -110,8 +110,9 @@ export class FunctionAppResource implements ArmResourceTemplateGenerator {
             "siteConfig": {
               appSettings: this.getFunctionAppSettings(config),
               "linuxFxVersion": "[parameters('linuxFxVersion')]",
-              "ipSecurityRestrictionsDefaultAction": "Deny",
-              "scmIpSecurityRestrictionsDefaultAction": "Allow",
+              // Commenting temporarily for dev since it does not have a private endpoint
+              // "ipSecurityRestrictionsDefaultAction": "Deny",
+              // "scmIpSecurityRestrictionsDefaultAction": "Allow",
             },
             "reserved": "[parameters('functionAppReserved')]",
             // name: "[parameters('functionAppName')]",
